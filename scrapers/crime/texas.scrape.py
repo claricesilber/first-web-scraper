@@ -2,7 +2,7 @@ import csv
 import requests
 from BeautifulSoup import BeautifulSoup
 
-url = 'http://www.showmeboone.com/sheriff/JailResidents/JailResidents.asp'
+url = 'http://www.tdcj.state.tx.us/death_row/dr_scheduled_executions.html'
 response = requests.get(url)
 html = response.content
 
@@ -17,7 +17,7 @@ for row in table.findAll('tr')[1:]:
         list_of_cells.append(text)
     list_of_rows.append(list_of_cells)
 
-outfile = open("./inmates.csv", "wb")
+outfile = open("./executions.csv.rtf", "wb")
 writer = csv.writer(outfile)
 writer.writerow(["Last", "First", "Middle", "Gender", "Race", "Age", "City", "State"])
 writer.writerows(list_of_rows)
